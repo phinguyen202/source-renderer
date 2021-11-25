@@ -1,3 +1,19 @@
 import Todo from './components/todo.js';
 
-document.getElementById('test').appendChild(new Todo({ todoList: ['push-up']}, {}).render());
+const todoList = [
+    {
+        id: 1,
+        text: 'Learn JavaScript',
+        isCompleted: false
+    },
+    {
+        id: 2,
+        text: 'Learn HTML',
+        isCompleted: false
+    }
+];
+document.getElementById('test').appendChild(new Todo({ todoList }, {}).render());
+
+setInterval(() => { 
+    console.log(todoList);
+}, 10000);
