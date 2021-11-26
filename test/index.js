@@ -1,10 +1,11 @@
 import Todo from './components/todo.js';
+import { Renderer } from '../src/renderer.js';
 
-const todoList = [
+const source = [
     {
         id: 1,
         text: 'Learn JavaScript',
-        isCompleted: false
+        isCompleted: true
     },
     {
         id: 2,
@@ -12,8 +13,12 @@ const todoList = [
         isCompleted: false
     }
 ];
-document.getElementById('test').appendChild(new Todo({ todoList }, {}).render());
 
-setInterval(() => { 
-    console.log(todoList);
-}, 10000);
+const todo = new Todo(source, {});
+const container = document.getElementById('container');
+
+Renderer(container, todo);
+
+document.getElementById('source-but').addEventListener('click', () => {
+    console.log(source);
+});

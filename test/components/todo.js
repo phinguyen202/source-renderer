@@ -1,31 +1,27 @@
+import { Component } from '../../src/component.js';
 import { elt } from '../../src/dom.js';
 import Item from './item.js';
-export default class Todo {
+export default class Todo extends Component {
     constructor(source, props) {
-        this.source = source; // alway is object
-        this.props = { // contains all props and functions
+        super(source, { // contains all props and functions
             ...props,
             title: 'This is a to-do list'
-        };
+        }, source.todoList);
     }
 
     addTodo(text) {
         if (text) {
-            this.source.todoList.push({
-                id: this.source.todoList.length + 1,
+            this.source.push({
+                id: this.source.length + 1,
                 text,
                 isCompleted: false
             });
-            // this.render();
-            console.log(this.source.todoList);
         }
     }
 
     deleteTodo(index) {
         if (index !== undefined) {
-            this.source.todoList.splice(index, 1);
-            // this.render();
-            console.log(this.source.todoList);
+            this.source.splice(index, 1);
         }
     }
 
@@ -45,8 +41,8 @@ export default class Todo {
                 }
             }),
             elt('ul', { class: 'todo-list' },
-                ...this.source.todoList.map((item, index) =>
-                    new Item(item, { delete: () => this.deleteTodo(index) }).render()
+                ...this.source.map((item, index) =>
+                    new Item(item, { delete: () => this.deleteTodo(index) })
                 )
             ),
         )

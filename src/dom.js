@@ -1,3 +1,5 @@
+import { Component } from "./component.js";
+
 export function elt(type, props, ...children) {
     const dom = document.createElement(type);
     if (props) Object.assign(dom, props);
@@ -6,6 +8,9 @@ export function elt(type, props, ...children) {
             dom.appendChild(child);
         } else if (typeof child === 'string') {
             dom.appendChild(document.createTextNode(child));
+        } else if (child instanceof Component) {
+            child.element = child.render();
+            dom.appendChild(child.element);
         }
     }
     return dom;
