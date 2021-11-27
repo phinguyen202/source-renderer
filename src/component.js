@@ -1,23 +1,8 @@
 export class Component {
-    constructor(source, props, ...objects) {
-        this.source = new Proxy(source, {
-            set: (target, key, value) => {
-                target[key] = value;
-                if (target instanceof Array) {
-                    // with array, element is assigned first
-                    // then length is assigned, so ignore the element assignment
-                    if (key === 'length') {
-                        this.reRender();
-                    }
-                    return true;
-                }
-                console.log(`${key} set to ${value}`);
-                this.reRender();
-                return true;
-            }
-        });
-
+    constructor(source, props) {
+        this.source = source;
         this.props = props;
+        this.children = {};
     }
 
     reRender() {

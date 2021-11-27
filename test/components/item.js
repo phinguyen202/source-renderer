@@ -14,6 +14,7 @@ export default class Item extends Component {
                 checked: this.source.isCompleted,
                 onclick: (e) => {
                     this.source.isCompleted = e.target.checked;
+                    // do not need to re-render here because the UI has already been updated itself
                 }
             }),
             this.source.text,

@@ -1,28 +1,12 @@
 import { Component } from '../../src/component.js';
-import { elt } from '../../src/dom.js';
-import Item from './item.js';
+import { elt, eltRef } from '../../src/dom.js';
+import TodoList from './list.js';
 export default class Todo extends Component {
     constructor(source, props) {
         super(source, { // contains all props and functions
             ...props,
             title: 'This is a to-do list'
-        }, source.todoList);
-    }
-
-    addTodo(text) {
-        if (text) {
-            this.source.push({
-                id: this.source.length + 1,
-                text,
-                isCompleted: false
-            });
-        }
-    }
-
-    deleteTodo(index) {
-        if (index !== undefined) {
-            this.source.splice(index, 1);
-        }
+        });
     }
 
     render() {
@@ -35,16 +19,13 @@ export default class Todo extends Component {
                 autofocus: true,
                 onkeypress: (e) => {
                     if (e.key === 'Enter') {
-                        this.addTodo(e.target.value);
+                        this.children.todoList.addTodo(e.target.value);
                         e.target.value = '';
+                        e.target.focus();
                     }
                 }
             }),
-            elt('ul', { class: 'todo-list' },
-                ...this.source.map((item, index) =>
-                    new Item(item, { delete: () => this.deleteTodo(index) })
-                )
-            ),
+            eltRef(this, 'todoList', new TodoList(this.source, {})),
         )
     }
 }

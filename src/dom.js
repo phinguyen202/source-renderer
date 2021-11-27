@@ -15,3 +15,8 @@ export function elt(type, props, ...children) {
     }
     return dom;
 }
+
+export function eltRef(parent, name, component) {
+    parent.children[name] = component;
+    return component;
+}
