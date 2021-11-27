@@ -6,8 +6,8 @@ export class Component {
     }
 
     reRender() {
-        console.log('re-render', this.constructor.name);
         if (this.element) {
+            console.debug('re-render', this.constructor.name);
             const newElement = this.render();
             this.element.replaceWith(newElement);
             this.element = newElement;
