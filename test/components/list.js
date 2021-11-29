@@ -1,5 +1,4 @@
-import { Component } from '../../src/component.js';
-import { elt } from '../../src/dom.js';
+import { Component, elt } from '../../index.js';
 import Item from './item.js';
 
 export default class TodoList extends Component {

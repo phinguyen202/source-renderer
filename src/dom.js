@@ -38,6 +38,8 @@ export function eltSVG(type, props, ...children) {
 }
 
 export function eltRef(parent, name, component) {
-    parent.children[name] = component;
+    if (parent && parent.children && name) {
+        parent.children[name] = component;
+    }
     return component;
 }

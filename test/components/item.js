@@ -1,5 +1,4 @@
-import { elt } from '../../src/dom.js';
-import { Component } from '../../src/component.js';
+import { Component, elt } from '../../index.js';
 
 export default class Item extends Component {
     constructor(source, props) {
