@@ -1,7 +1,11 @@
-import { Component, elt } from '../../index.js';
+import { Component, elt } from '../../src';
+import { ItemModel } from './todo.js';
 
-export default class Item extends Component {
-    constructor(source, props) {
+interface ItemProps {
+    delete: () => void;
+}
+export default class Item extends Component<ItemModel, ItemProps> {
+    constructor(source: ItemModel, props: ItemProps) {
         super(source, props);
     }
 
@@ -11,7 +15,7 @@ export default class Item extends Component {
                 class: 'todo-item-checkbox',
                 type: 'checkbox',
                 checked: this.source.isCompleted,
-                onclick: (e) => {
+                onclick: (e: any) => {
                     this.source.isCompleted = e.target.checked;
                     // do not need to re-render here because the UI has already been updated itself
                 }
@@ -19,7 +23,7 @@ export default class Item extends Component {
             this.source.text,
             elt('button', {
                 class: 'item-todo',
-                onclick: (e) => this.props.delete()
+                onclick: () => this.props.delete()
             }, 'x')
         )
     }
