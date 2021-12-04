@@ -1,6 +1,8 @@
-import { Component } from "./component.js";
+import { Component } from "./component";
 
-export function elt(type, props, ...children) {
+type ChildType =  HTMLElement | string | Component<any, any>;
+
+export function elt(type: keyof HTMLElementTagNameMap, props: any, ...children: ChildType[]) {
     const dom = document.createElement(type);
     if (props) Object.assign(dom, props);
     for (const child of children) {
@@ -16,8 +18,10 @@ export function elt(type, props, ...children) {
     return dom;
 }
 
+type SVGChildType = SVGElement | string | Component<any, any>;
+
 const NS = 'http://www.w3.org/2000/svg';
-export function eltSVG(type, props, ...children) {
+export function eltSVG(type: keyof SVGElementTagNameMap, props: any, ...children: Array<SVGChildType>) {
     const dom = document.createElementNS(NS, type);
     if (props) {
         for (const prop in props) {
@@ -37,7 +41,7 @@ export function eltSVG(type, props, ...children) {
     return dom;
 }
 
-export function eltRef(parent, name, component) {
+export function eltRef(parent: any, name: string, component: Component<any, any>) {
     if (parent && parent.children && name) {
         parent.children[name] = component;
     }

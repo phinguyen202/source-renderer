@@ -1,12 +1,18 @@
-import { Component, elt } from '../../index.js';
-import Item from './item.js';
+import { Component, elt } from '@src/index';
+import Item from './item';
+import { ItemModel } from './todo';
 
-export default class TodoList extends Component {
-    constructor(source, props) {
+type TodoListSource = Array<ItemModel>;
+
+interface TodoListProps {}
+
+
+export default class TodoList extends Component<TodoListSource, TodoListProps> {
+    constructor(source: TodoListSource, props: TodoListProps) {
         super(source, props);
     }
 
-    addTodo(text) {
+    addTodo(text: string) {
         if (text) {
             this.source.push({
                 id: this.source.length + 1,
@@ -17,7 +23,7 @@ export default class TodoList extends Component {
         }
     }
 
-    deleteTodo(index) {
+    deleteTodo(index: number) {
         if (index !== undefined && this.source[index]) {
             this.source.splice(index, 1);
             this.reRender();
@@ -26,7 +32,7 @@ export default class TodoList extends Component {
 
     render() {
         return elt('ul', { class: 'todo-list' },
-            ...this.source.map((item, index) =>
+            ...this.source.map((item: ItemModel, index: number) =>
                 new Item(item, { delete: () => this.deleteTodo(index) })
             )
         );

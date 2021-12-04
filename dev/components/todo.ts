@@ -1,7 +1,20 @@
-import { Component, elt, eltRef } from '../../index.js';
-import TodoList from './list.js';
-export default class Todo extends Component {
-    constructor(source, props) {
+import { Component, elt, eltRef } from '@src/index';
+import TodoList from './list';
+
+export interface ItemModel {
+    id: number,
+    text: string,
+    isCompleted: boolean
+}
+
+type TodoSource = Array<ItemModel>;
+
+interface TodoProps {
+    title?: string;
+}
+
+export default class Todo extends Component<TodoSource, TodoProps> {
+    constructor(source: TodoSource, props: TodoProps) {
         super(source, { // contains all props and functions
             ...props,
             title: 'This is a to-do list'
@@ -16,7 +29,7 @@ export default class Todo extends Component {
                 class: 'new-todo',
                 placeholder: 'What needs to be done?',
                 autofocus: true,
-                onkeypress: (e) => {
+                onkeypress: (e: any) => {
                     if (e.key === 'Enter') {
                         this.children.todoList.addTodo(e.target.value);
                         e.target.value = '';

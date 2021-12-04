@@ -7,4 +7,4 @@ A lightweight lib for UI render and keep the state of app in one object
 - Immutability, use or not is your style
 
 ## Document (To be update)
-- Please look the test folder for example
+- Please look the dev folder for example
