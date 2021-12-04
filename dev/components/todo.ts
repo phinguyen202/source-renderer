@@ -1,4 +1,4 @@
-import { Component, elt, eltRef } from '@src/index.js';
+import { Component, elt, eltRef } from '@src/index';
 import TodoList from './list';
 
 export interface ItemModel {

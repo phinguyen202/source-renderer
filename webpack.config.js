@@ -2,6 +2,7 @@ const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const path = require('path');
 
 module.exports = {
+    mode: 'development',
     entry: './dev/index.ts',
     output: {
         filename: 'bundle.js',
@@ -32,7 +33,9 @@ module.exports = {
 
     devServer: {
         // All options here: https://webpack.js.org/configuration/dev-server/
-        
+        static: {
+            directory: path.join(__dirname, 'dev'),
+        },
         // enable HMR on the server
         hot: true,
         // match the output path

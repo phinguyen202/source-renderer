@@ -1,4 +1,4 @@
-import { Renderer } from '@src/index.js';
+import { Renderer } from '@src/index';
 import Todo from './components/todo';
 
 const source = [

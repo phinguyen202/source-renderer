@@ -1,5 +1,5 @@
 import { Component, elt } from '../../src';
-import { ItemModel } from './todo.js';
+import { ItemModel } from './todo';
 
 interface ItemProps {
     delete: () => void;

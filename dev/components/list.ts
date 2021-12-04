@@ -1,4 +1,4 @@
-import { Component, elt } from '@src/index.js';
+import { Component, elt } from '@src/index';
 import Item from './item';
 import { ItemModel } from './todo';
 

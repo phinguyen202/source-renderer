@@ -1,5 +1,5 @@
-import { Component } from './component.js';
-import { elt, eltSVG, eltRef } from './dom.js';
-import { Renderer } from './renderer.js';
+import { Component } from './component';
+import { elt, eltSVG, eltRef } from './dom';
+import { Renderer } from './renderer';
 
 export { Component, elt, eltSVG, eltRef, Renderer };
