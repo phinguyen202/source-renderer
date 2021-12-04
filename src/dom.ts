@@ -18,10 +18,10 @@ export function elt(type: keyof HTMLElementTagNameMap, props: any, ...children: 
     return dom;
 }
 
-type SVGChild = SVGElement | string | Component<any, any>;
+type SVGChildType = SVGElement | string | Component<any, any>;
 
 const NS = 'http://www.w3.org/2000/svg';
-export function eltSVG(type: keyof SVGElementTagNameMap, props: any, ...children: Array<SVGChild>) {
+export function eltSVG(type: keyof SVGElementTagNameMap, props: any, ...children: Array<SVGChildType>) {
     const dom = document.createElementNS(NS, type);
     if (props) {
         for (const prop in props) {
