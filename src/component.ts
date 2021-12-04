@@ -1,6 +1,6 @@
 export abstract class Component<S, P> {
     protected children: any;
-    public element: HTMLElement;
+    public element: Element;
     constructor(protected source: S, protected props: P) {
         this.children = {};
     }
@@ -14,5 +14,5 @@ export abstract class Component<S, P> {
         }
     }
 
-    abstract render(): HTMLElement;
+    abstract render(): Element;
 }
