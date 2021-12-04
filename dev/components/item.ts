@@ -18,6 +18,7 @@ export default class Item extends Component<ItemModel, ItemProps> {
                 onclick: (e: any) => {
                     this.source.isCompleted = e.target.checked;
                     // do not need to re-render here because the UI has already been updated itself
+                    // render this if you have an other effect on itd
                 }
             }),
             this.source.text,
