@@ -1,6 +1,6 @@
 {
   "name": "source-renderer",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A lightweight lib for UI render and keep the state of app in one object",
   "main": "index.ts",
   "directories": {
