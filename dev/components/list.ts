@@ -2,20 +2,15 @@ import { Component, elt } from '@src/index';
 import Item from './item';
 import { ItemModel } from './todo';
 
-type TodoListSource = Array<ItemModel>;
-
-interface TodoListProps {}
-
-
-export default class TodoList extends Component<TodoListSource, TodoListProps> {
-    constructor(source: TodoListSource, props: TodoListProps) {
-        super(source, props);
+export default class TodoList extends Component {
+    constructor(protected notes: Array<ItemModel>) {
+        super();
     }
 
     addTodo(text: string) {
         if (text) {
-            this.source.push({
-                id: this.source.length + 1,
+            this.notes.push({
+                id: this.notes.length + 1,
                 text,
                 isCompleted: false
             });
@@ -24,15 +19,15 @@ export default class TodoList extends Component<TodoListSource, TodoListProps> {
     }
 
     deleteTodo(index: number) {
-        if (index !== undefined && this.source[index]) {
-            this.source.splice(index, 1);
+        if (index !== undefined && this.notes[index]) {
+            this.notes.splice(index, 1);
             this.reRender();
         }
     }
 
     render() {
         return elt('ul', { class: 'todo-list' },
-            ...this.source.map((item: ItemModel, index: number) =>
+            ...this.notes.map((item: ItemModel, index: number) =>
                 new Item(item, { delete: () => this.deleteTodo(index) })
             )
         );

@@ -7,18 +7,13 @@ export interface ItemModel {
     isCompleted: boolean
 }
 
-type TodoSource = Array<ItemModel>;
-
 interface TodoProps {
     title?: string;
 }
 
-export default class Todo extends Component<TodoSource, TodoProps> {
-    constructor(source: TodoSource, props: TodoProps) {
-        super(source, { // contains all props and functions
-            ...props,
-            title: 'This is a to-do list'
-        });
+export default class Todo extends Component {
+    constructor(protected notes: Array<ItemModel>, protected props: TodoProps) {
+        super();
     }
 
     render() {
@@ -37,7 +32,7 @@ export default class Todo extends Component<TodoSource, TodoProps> {
                     }
                 }
             }),
-            eltRef(this, 'todoList', new TodoList(this.source, {})),
+            eltRef(this, 'todoList', new TodoList(this.notes)),
         )
     }
 }
